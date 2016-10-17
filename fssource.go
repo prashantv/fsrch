@@ -108,12 +108,6 @@ func (c *fsConn) Close() error {
 	return c.walkErr
 }
 
-var cols = map[string]int{
-	"name": 0,
-	"path": 1,
-	"size": 2,
-}
-
 var _columnsDesc = []struct {
 	name string
 	t    value.ValueType
