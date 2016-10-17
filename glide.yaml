@@ -1,0 +1,10 @@
+package: github.com/prashantv/fql
+import:
+- package: github.com/araddon/qlbridge
+  repo: https://github.com/prashantv/qlbridge
+  subpackages:
+  - datasource
+  - expr
+  - expr/builtins
+  - qlbdriver
+  - value

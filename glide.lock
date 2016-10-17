@@ -1,0 +1,56 @@
+hash: 08980e00298fff3144cd43c115f3eb50b197001e3391bd903360873b665e13ab
+updated: 2016-10-16T18:33:06.773373521-07:00
+imports:
+- name: github.com/araddon/dateparse
+  version: 352f0d71491b7b0b975c6ffcc774eeff085b44eb
+- name: github.com/araddon/gou
+  version: 0ab1e8f997e35d27da012072dc531fcc0204da5a
+- name: github.com/araddon/qlbridge
+  version: 8371fe271f0518ec33ae3b6503d661f4e019116d
+  repo: https://github.com/prashantv/qlbridge
+  subpackages:
+  - datasource
+  - datasource/membtree
+  - exec
+  - expr
+  - expr/builtins
+  - lex
+  - plan
+  - qlbdriver
+  - rel
+  - schema
+  - value
+  - vm
+- name: github.com/dchest/siphash
+  version: 4ebf1de738443ea7f45f02dc394c4df1942a126d
+- name: github.com/gogo/protobuf
+  version: 50d1bd39ce4e7a96b75e3e040be9caf79dbb4c61
+  subpackages:
+  - gogoproto
+  - proto
+  - protoc-gen-gogo/descriptor
+- name: github.com/golang/protobuf
+  version: 98fa357170587e470c5f27d3c3ea0947b71eb455
+  subpackages:
+  - proto
+- name: github.com/google/btree
+  version: 925471ac9e2131377a91e1595defec898166fe49
+- name: github.com/leekchan/timeutil
+  version: 28917288c48df3d2c1cfe468c273e0b2adda0aa5
+- name: github.com/lytics/datemath
+  version: 988020f3ad34814005ab10b6c7863e31672b5f63
+- name: github.com/lytics/logrus
+  version: 59cd2e4a569b4494d9196bef82f0784e467adac9
+- name: github.com/mb0/glob
+  version: 1eb79d2de6c448664e7272f8b9fe1938239e3aaa
+- name: github.com/pborman/uuid
+  version: 3d4f2ba23642d3cfd06bd4b54cf03d99d95c0f1b
+- name: golang.org/x/net
+  version: 8b4af36cd21a1f85a7484b49feb7c79363106d8e
+  subpackages:
+  - context
+- name: golang.org/x/sys
+  version: 9bb9f0998d48b31547d975974935ae9b48c7a03c
+  subpackages:
+  - unix
+testImports: []
