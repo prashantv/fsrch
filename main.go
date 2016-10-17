@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"path/filepath"
 	"strings"
 
@@ -16,31 +18,20 @@ import (
 	"github.com/araddon/qlbridge/value"
 )
 
-var (
-	sqlText          string
-	flagCsvDelimiter = ","
-	logging          = "info"
-)
-
-func init() {
-	flag.StringVar(&logging, "logging", "fatal", "logging [ debug,info ]")
-	flag.StringVar(&sqlText, "sql", "", "QL ish query multi-node such as [select user_id, yy(reg_date) from stdio];")
+func main() {
 	flag.Parse()
 
-	u.SetupLogging(logging)
-	u.SetColorOutput()
-}
-
-func main() {
-	if sqlText == "" {
-		u.Errorf("You must provide a valid select query in argument:    --sql=\"select ...\"")
-		return
+	args := flag.Args()
+	if len(args) == 0 {
+		log.Fatalf("Please provide a valid select query")
 	}
+	sqlText := args[0]
 
 	// load all of our built-in functions
 	builtins.LoadAllBuiltins()
 	expr.FuncAdd("abs", absPath)
 	expr.FuncAdd("ext", extPath)
+	expr.FuncAdd("contents", contentsPath)
 
 	fsSource := &FilesystemSource{}
 	datasource.Register("fs", fsSource)
@@ -90,4 +81,13 @@ func absPath(ctx expr.EvalContext, path value.Value) (value.StringValue, bool) {
 
 func extPath(ctx expr.EvalContext, path value.Value) (value.StringValue, bool) {
 	return value.NewStringValue(filepath.Ext(path.ToString())), true
+}
+
+func contentsPath(ctx expr.EvalContext, path value.Value) (value.ByteSliceValue, bool) {
+	contents, err := ioutil.ReadFile(path.ToString())
+	if err != nil {
+		return value.NewByteSliceValue(nil), false
+	}
+
+	return value.NewByteSliceValue(contents), true
 }
